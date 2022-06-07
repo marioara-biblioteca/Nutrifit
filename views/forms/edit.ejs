@@ -1,0 +1,51 @@
+<style>
+#form-label{
+    width: 200px;
+}
+body{
+    text-align: center;
+}
+</style>
+<% layout('./boilerplate')%>
+
+<div class="row">
+    <div class="col-sm-4">
+        <div  class="card border-lights mb-3 d" >
+            <div class="card-header bg-transparent border-lights"></div>
+            <form action="/forms/<%=form._id%>?_method=PUT" method="POST" enctype="multipart/form-data" novalidate class="validated-form"
+                enctype="multipart/form-data">
+                <div class="card-body text-lights" >
+                <ul class="list-group list-group-flush" >
+                    <li class="list-group-item"> 
+                        <label class="form-label" for="weight">Weight</label>
+                        <input class="form-control" type="number" id="weight" name="form[weight]" value="<%= form.weight %>" >
+                    </li>
+                    <li class="list-group-item">
+                        <label class="form-label" for="age">Age</label>
+                        <input class="form-control" type="text" id="age" name="form[age]" value="<%= form.age %>" >    
+                    </li>
+                    <li class="list-group-item"><i> Current form: <%=form.activityLevel  %> </i>
+                       <br> <input class="formCheckbox" type="checkbox" id="Beginner" name="beginner" value="beginner">
+                        <label for="beginner"> Beginner</label><br>
+                        <input class="formCheckbox" type="checkbox" id="Medium" name="medium" value="medium">
+                        <label for="medium"> Medium</label><br>
+                        <input class="formCheckbox" type="checkbox" id="Advanced" name="advanced" value="advanced">
+                        <label for="advanced"> Advanced</label><br>
+                    </li>
+                    <li  class="list-group-item">
+                        <input type="file" class="form-file-input" id="image" name="image" multiple>
+                        <label class="form-file-label" for="image">
+                            <span class="form-file-text custom-file-label">Add image...</span>
+                            <span class="form-file-button">Browse</span>
+                        </label>
+                    </li>
+                </ul>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-info">Update Form</button>
+                </div>
+            </form>
+           
+          </div>
+    </div>
+</div>

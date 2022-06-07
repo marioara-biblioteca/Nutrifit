@@ -1,0 +1,26 @@
+<style>
+  img{
+    width: 280px;
+    height: 280px;
+  }
+</style>
+<% layout('./boilerplate')%>
+<div class="row">
+    <div class="col-sm-6">
+        <div  class="card border-lights mb-3 d" >
+            <div class="card-header bg-transparent border-lights"></div>
+            <div class="card-body text-lights" >
+              <ul class="list-group list-group-flush" >
+                <li class="list-group-item"><%= form.date %> </li>
+                <li class="list-group-item">Weight <%= form.weight %> </li>
+                <li class="list-group-item">Activity Level: <%=form.activityLevel%> </li>
+                <li  class="list-group-item"><img src="<%= form.progressPic.url %> " class="img-fluid" alt="Responsive image"></li>
+              </ul>
+            </div>
+            <div class="card-footer bg-transparent border-lights">
+              <a href="/forms/<%=form._id%>/edit">Edit form</a><br>
+              <a href="/forms">All Forms</a>
+            </div>
+          </div>
+    </div>
+</div>

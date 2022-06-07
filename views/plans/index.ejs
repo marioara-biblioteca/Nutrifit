@@ -1,0 +1,67 @@
+<style>
+    body{
+        background-image: linear-gradient(rgba(70, 69, 69, 0.4), rgba(0, 0, 0, 0.4)),url("https://images.unsplash.com/photo-1609789518207-b4892e61e411?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=679&q=80") !important;
+        background-repeat: repeat-x;
+        background-size: auto;
+    }
+
+.dropbtn {
+  background-color: rgba(255, 166, 0, 0.541);
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  margin-bottom: 5px;
+}
+
+    .row{
+        padding: 1rem;
+    }
+.dropdown {
+  padding-bottom: 250px;
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f152;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content div {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+p{
+    width: 20rem !important;
+  
+}
+
+.dropdown-content .div:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: orange;}
+</style>
+<% layout('./boilerplate')%>
+
+<div class="row">
+<% for (let plan of plans) {%> 
+    <div class="col-md-4">
+<div class="dropdown">
+    <button class="dropbtn"> <a href="/plans/<%= plan._id %>"><%= plan.title %></a> </button>
+    <div class="dropdown-content">
+     <div class="content">
+        <p><%= plan.description %> </p>
+     </div>
+    </div>
+  </div>
+</div>
+  <% } %> 
+</div>

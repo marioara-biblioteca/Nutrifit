@@ -1,0 +1,46 @@
+<style>
+    body{
+       background-image: linear-gradient(rgba(70, 69, 69, 0.4), rgba(0, 0, 0, 0.4)),url("https://images.unsplash.com/photo-1517093728432-a0440f8d45af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjd8fGhlYWx0aHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=1200&q=60") !important;
+       background-repeat: repeat-x;
+       background-size: auto;
+   }
+   input,textarea{
+       opacity: 50%;
+   }
+
+</style>
+<% layout('./boilerplate')%>
+<div class="row">
+    <h1 class="text-center font-weight-light">New Plan</h1>
+    <div class="col-md-6 offset-md-3">
+        <form action="/plans" method="POST" novalidate class="validated-form"
+            enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="plan[title]" value="title" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="days">Days</label>
+                <input class="form-control" type="text" id="days" name="plan[numberOfDays]" value="days" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control" type="text" id="description" name="plan[description]" value ="description" required></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-info">Create Plan</button>
+            </div>
+        </form>
+        <a href="/plans">All Plans</a>
+
+    </div>
+</div>

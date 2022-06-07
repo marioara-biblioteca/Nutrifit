@@ -1,0 +1,55 @@
+<style>
+    body{
+       background-image: linear-gradient(rgba(70, 69, 69, 0.4), rgba(102, 99, 99, 0.4)),url("https://images.unsplash.com/photo-1539794830467-1f1755804d13?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGZpdG5lc3N8ZW58MHx8MHx8&auto=format&fit=crop&w=1200&q=60") !important;
+       background-repeat: repeat-x;
+       background-size: auto;
+       color: rgba(240, 248, 255, 0.647);
+    
+   }
+   input,textarea{
+       opacity: 50%;
+   }
+
+</style>
+<% layout('./boilerplate')%>
+<div class="row">
+    <h1 class="text-center font-weight-light">Update Your Progress Today</h1>
+    <div class="col-md-6 offset-md-3">
+        <form action="/days/new" method="POST" novalidate class="validated-form"
+            enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label" for="totalCaloriesEaten">Total Calories</label>
+                <input class="form-control" type="number" id="totalCaloriesEaten" name="day[totalCaloriesEaten]" value="totalCaloriesEaten" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="totalCaloriesBurned">Calories Burned</label>
+                <input class="form-control" type="number" id="totalCaloriesBurned" name="day[totalCaloriesBurned]" value="totalCaloriesBurned" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="workTime">Work Time</label>
+                <input class="form-control" type="number" id="workTime" name="day[workTime]" value="workTime" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="tvTime">Screen Time</label>
+                <input class="form-control" type="number" id="tvTime" name="day[tvTime]" value ="tvTime" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-info">Submit progress</button>
+            </div>
+        </form>
+        <a href="/forms">To Forms</a>
+
+    </div>
+</div>

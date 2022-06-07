@@ -1,0 +1,96 @@
+<style>
+    body {
+       height: 100vh;
+       background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+           url("https://images.unsplash.com/photo-1590004828948-09db7606e5ac?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1026&q=80");
+       background-size: cover;
+       background-position: center;
+       text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+       box-shadow: inset 0 0 10rem rgba(0, 0, 0, 0.5);
+   }
+   button{
+     padding: 1px;
+     opacity: 70%;
+     display: flex;
+   }
+</style>
+<% layout('./boilerplate')%>
+
+
+<button id="toggle1" class="btn btn-light">Show Users</button>
+
+<div id="toHide1" style="display: none;" class="card-group" >
+
+<% for (let user of allUsers) if(user.username != 'admin')  {%> 
+    <div  class="card border-dark bg-light m-3" style="border-radius: 5%; width: 18rem; opacity: 70%;">
+    
+      <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+      <div class="card-body">
+        <h5 class="card-title bg-transparent border-lights"> <%= user.username %>  </h5>
+        <% for (let plan of allPlans) if(user.currentPlan && user.currentPlan._id.equals (plan._id)) {%> 
+          <p class="card-text bg-transparent border-lights">Current Plan: <%=plan.title%></p> 
+        <% break; } else  { %>
+          <p class="card-text bg-transparent border-lights">Still need to add logic for adding plans and forms! To be continued...</p>
+          <% } %>
+          <hr>
+        <a href="/forms/<%=user.startParameters %>" class="card-link">Beginning</a>
+        <a href="/forms/<%=user.currentParameters %>" class="card-link">Current Performance</a>
+      </div>
+      <%  for( let form of allForms){ if(user.currentParameters && user.currentParameters.equals(form._id)){ %>   
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Weight: <%= form.weight %>kg </li>
+        <li class="list-group-item">Age: <%= form.age %> y/o</li>
+        <li class="list-group-item">Gender: <%= form.gender %> </li>
+      </ul>
+      <% } }%> 
+      <div class="card-body">
+        <a href="#" class="card-link">Edit user</a>
+        <a href="#" class="card-link">Delete user</a>
+      </div>
+    </div>
+<% }%> 
+</div>
+<button id="toggle2" class="btn btn-light">Show Plans</button>
+<div id="toHide2" style="display: none;" class="card-group">
+  
+  <% for (let plan of allPlans)   {%> 
+      <div class="card border-dark bg-light m-3" style="border-radius: 5%; width: 18rem; opacity: 70%;">
+        <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+        <div class="card-body">
+          <h5 class="card-title bg-transparent border-lights"> <%= plan.title %>  </h5>
+        </div>
+        <hr>
+        <div class="card-body">
+          <a href="/plans/<%= plan._id %>/edit " class="card-link">Edit plan</a>
+          <a href="/plans/<%= plan._id %>/delete" class="card-link">Delete plan</a>
+        </div>
+      </div>
+  <% }%> 
+  </div>
+
+  <script>
+    const targetDiv1 = document.getElementById("toHide1");
+    const targetDiv2 = document.getElementById("toHide2");
+    const btn1 = document.getElementById("toggle1");
+    const btn2 = document.getElementById("toggle2");
+    btn1.onclick = function () {
+      if (targetDiv1.style.display !== "none") {
+        targetDiv1.style.display = "none";
+        btn1.innerText = 'Show Users'
+      } else {
+        targetDiv1.style.display = "flex";
+        btn1.innerText = 'Hide Users';
+        
+      }
+    };
+    btn2.onclick = function () {
+      if (targetDiv2.style.display !== "none") {
+        targetDiv2.style.display = "none";
+        btn2.innerText = 'Show Users'
+      } else {
+        targetDiv2.style.display = "flex";
+        btn2.innerText = 'Hide Plans';
+      }
+    };
+  </script>
+</body>

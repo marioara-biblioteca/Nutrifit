@@ -1,0 +1,59 @@
+<style>
+    body{
+       background-image: linear-gradient(rgba(70, 69, 69, 0.184), rgba(0, 0, 0, 0.477)),url("https://images.unsplash.com/photo-1487260211189-670c54da558d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjAxfHxxdW90ZXN8ZW58MHx8MHx8&auto=format&fit=crop&w=1200&q=60") !important;
+       background-repeat: no-repeat;
+       background-size: auto;
+   }
+   input,textarea{
+       opacity: 50%;
+   }
+   select{opacity: 70%;}
+
+</style>
+<% layout('./boilerplate')%>
+<div class="row">
+    <h1 class="text-center font-weight-light">Edit User</h1>
+    <div class="col-md-6 offset-md-3">
+        <form action="/edit?_method=PUT" method="POST" enctype="multipart/form-data" novalidate class="validated-form"
+            enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label" for="username">Usernmae</label>
+                <input class="form-control" type="text" id="username" name="user[username]"  required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control" type="password" id="password" name="user[password]"  required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="form-file custom-file">
+                    <input type="file" class="form-file-input" id="image" name="image" multiple>
+                    <label class="form-file-label" for="image">
+                        <span class="form-file-text custom-file-label">Add more image(s)...</span>
+                        <span class="form-file-button">Browse</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <select class="form-select" aria-label="Default select example">
+                    <% for (let plan of plans) {%>
+                        <option name="user[plan]" value="<%= plan.title %> "><%= plan.title %> </option>
+                        
+                    <%}  %>  
+                </select>
+              
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-info">Update Details</button>
+            </div>
+        </form>
+        <a href="/plans">Back To Plans</a>
+
+    </div>
+</div>

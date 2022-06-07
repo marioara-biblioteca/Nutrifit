@@ -1,0 +1,134 @@
+<style>
+    body {
+       height: 100vh;
+       background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+           url("https://images.unsplash.com/photo-1571008887538-b36bb32f4571?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+       background-size: cover;
+       background-position: center;
+       text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+       box-shadow: inset 0 0 10rem rgba(0, 0, 0, 0.5);
+   }
+   #login{
+       background-color: rgba(240, 255, 255, 0.11);
+       border-radius: 80%;
+       padding: 4rem;
+   }
+   a{
+            color: rgba(5, 12, 71, 0.199) !important;
+    }
+    .footer span{
+        color: rgba(5, 12, 71, 0.199);
+    }
+        
+   .transp{
+       background: rgba(0, 0, 0, 0.062);
+   }
+   .d{
+        opacity: 0.5;
+        filter: alpha(opacity=40);
+        max-width: 30rem;
+        text-align: center;
+   }
+   .d:hover{
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+   }
+   .pie-chart{
+     max-width: fit-content;
+     max-height: fit-content;
+   }
+  
+
+</style>
+<% layout('./boilerplate')%>
+<div class="row">
+  <div  class="card border-lights mb-3 d" >
+    <div class="card-header bg-transparent border-lights"></div>
+      <div class="card-body text-lights" >
+        <h5 class="card-title"><a href="/forms/<%= start._id %>">Beginning</a></h5>
+      </div>
+  </div>
+</div>
+<div class="row" id="spin">
+  <div  class="card border-lights mb-3 d" >
+    <div class="card-header bg-transparent border-lights"></div>
+      <div class="card-body text-lights" >
+        <div id="piechart">
+
+          <canvas id="pie-chart" width="800" height="450"></canvas>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="row">
+  <div  class="card border-lights mb-3 d" >
+    <div class="card-header bg-transparent border-lights"></div>
+      <div class="card-body text-lights">
+        <h5 class="card-title"> <a href="/forms/<%= current._id %>">Current state</a></h5>
+  </div>
+</div>
+<div hidden>
+<ul>
+  <li id="eaten"> <%= results[0] %> </li>
+  <li id="burned"> <%= results[1] %> </li>
+  <li id="work"> <%= results[2] %> </li>
+  <li id="tv"> <%= results[3] %> </li>
+
+</ul>
+</div>
+<script>
+  
+  new Chart(document.getElementById("pie-chart"), {
+    type: 'pie',
+    data: {
+      labels: ["Food", "Sport", "Tv", "Work"],
+      datasets: [{
+        label: "Progress",
+        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#c45850"],
+        data: [
+        parseFloat(document.getElementById('eaten').innerText),
+        parseFloat(document.getElementById('burned').innerText),
+        parseFloat(document.getElementById('tv').innerText),
+        parseFloat(document.getElementById('work').innerText)
+      ]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Progress Overview'
+      }
+    }
+});
+</script>
+<!-- 
+<script type="text/javascript">
+  // Load google charts
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  
+  // Draw the chart and set the chart values
+  function drawChart() {
+    var v1= document.getElementById('eaten').value;
+    var v2= document.getElementById('burned').value;
+    var v3= document.getElementById('work').value;
+    var v4= document.getElementById('tv').value;
+    var data = google.visualization.arrayToDataTable([
+    ['Task', 'Hours per Day'],
+    ['Eat', v1],
+    ['Sport', v2],
+    ['Work', v3],
+    ['TV', v4]
+  ]);
+  
+    // Optional; add a title and set the width and height of the chart
+    var options = {'title':'My Average Day'};
+  
+    // Display the chart inside the <div> element with id="piechart"
+    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    chart.draw(data, options);
+  }
+  </script> -->
+
+
+
